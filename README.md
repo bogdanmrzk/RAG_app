@@ -25,7 +25,7 @@ about Django Framework
 > request
 `POST /apiv1/chat/ask`
 
-`curl -X POST -H 'Content-Type: application/json' -d '{"question":"what is django forms?"}' localhost:8000/apiv1/chat/ask/`
+`curl -X POST -H 'Content-Type: application/json' -d '{"question":"what is django forms?"}' -N localhost:8000/apiv1/chat/ask/`
 
 > response
 ```
@@ -46,7 +46,7 @@ Forms are particularly useful when you want to enforce certain rules or constrai
 > request
 `POST /apiv1/chat/ask`
 
-`curl -X POST -H 'Content-Type: application/json' -d '{"question":"what is django signals"}' localhost:8000/apiv1/chat/ask/`
+`curl -X POST -H 'Content-Type: application/json' -d '{"question":"what is django signals"}' -N localhost:8000/apiv1/chat/ask/`
 
 > response
 ```
