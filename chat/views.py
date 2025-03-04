@@ -1,6 +1,5 @@
 from django.http import StreamingHttpResponse
 from rest_framework.views import APIView
-
 from chat.ask import rag_ask
 
 

@@ -17,7 +17,7 @@ def fill_db():
 
     # Splitting documents into chunks
     text_splitter = RecursiveCharacterTextSplitter(
-        chunk_size=300,
+        chunk_size=500,
         chunk_overlap=100,
         length_function=len,
         is_separator_regex=False,

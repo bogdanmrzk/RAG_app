@@ -12,6 +12,8 @@ collection = chroma_client.get_or_create_collection(name='about_django')
 
 fill_db()
 
+
+
 def rag_ask(query: str):
 
     """
@@ -36,22 +38,27 @@ def rag_ask(query: str):
 
     The data:
 
-    {str(results['documents'])}
+    {str(results['documents'])},
+    {str(results['metadatas'])}
     """
 
     # giving response from ollama
-    try:
-        response = ollama.chat(
-            model="llama3.2",
-            messages=[
-                {"role": "system", "content": system_prompt},
-                {"role": "user", "content": query},
-            ],
-            stream=True,
-        )
+    response = ollama.chat(
+        model="llama3.2",
+        messages=[
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": query},
+        ],
+        stream=True,
+    )
 
-        for message in response:
-            chunk = {'response': message['message']['content']}
-            yield json.dumps(chunk) + "\n"
-    except Exception as e:
-        yield json.dumps({'error': str(e)}) + "/n"
+    chunk_id = 0
+
+    for message in response:
+        chunk = {
+            'chunk_id': f'chunk_id {chunk_id}',
+            'response': message['message']['content'],
+        }
+        chunk_id += 1
+        yield json.dumps(chunk) + "\n"
+
