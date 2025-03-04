@@ -1,3 +1,4 @@
+import json
 import chromadb
 import ollama
 from .fill_db import fill_db
@@ -14,7 +15,6 @@ fill_db()
 def rag_ask(query: str):
 
     """
-
     You can ask model about Django Framework.
     Result will be generated based on input files in /data folder.
 
@@ -37,18 +37,21 @@ def rag_ask(query: str):
     The data:
 
     {str(results['documents'])}
-    {print(str(results['documents']))}
     """
 
     # giving response from ollama
-    response = ollama.chat(
-        model="llama3.2",
-        messages=[
-            {"role": "system", "content": system_prompt},
-            {"role": "user", "content": query},
-        ],
-        stream=True,
-    )
+    try:
+        response = ollama.chat(
+            model="llama3.2",
+            messages=[
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": query},
+            ],
+            stream=True,
+        )
 
-    for message in response:
-        yield message['message']['content']
+        for message in response:
+            chunk = {'response': message['message']['content']}
+            yield json.dumps(chunk) + "\n"
+    except Exception as e:
+        yield json.dumps({'error': str(e)}) + "/n"
