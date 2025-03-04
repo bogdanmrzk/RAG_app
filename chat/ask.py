@@ -28,14 +28,11 @@ def rag_ask(query: str):
     )
 
     system_prompt = f"""
-    You are an assistant. You answer questions about Django.
-    You only answer based on info I'm providing to you. You don't use your internal
-    knowledge, browsing etc. And you don't make things up.
-
-    If you don't know the answer, just say: "I don't know."
+    You are a Django assistant. 
+    You are strictly prohibited from using your own knowledge. 
+    If the answer is not in the provided data, respond with: "I don't know." 
 
     The data:
-
     {str(results['documents'])}
     """
 
