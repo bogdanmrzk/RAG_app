@@ -1,6 +1,7 @@
 import chromadb
 import ollama
 from .fill_db import fill_db
+
 DATA_PATH = r'data'
 CHROMA_PATH = r'chroma_db'
 
@@ -38,8 +39,7 @@ def rag_ask(query: str):
     {str(results['documents'])}
     """
 
-    print(system_prompt)
-
+    # giving response from ollama
     response = ollama.chat(
         model="llama3.2",
         messages=[
