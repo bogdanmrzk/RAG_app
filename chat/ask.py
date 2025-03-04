@@ -55,10 +55,7 @@ def rag_ask(query: str):
     chunk_id = 0
 
     for message in response:
-        chunk = {
-            'chunk_id': f'chunk_id {chunk_id}',
-            'response': message['message']['content'],
-        }
+
         chunk_id += 1
-        yield json.dumps(chunk) + "\n"
+        yield message['message']['content']
 
