@@ -7,29 +7,55 @@ RAG chat API about Django Framework
 This is DRF API chat, built to answer simple questions
 about Django Framework
 
+> [!IMPORTANT]
+> You must have running instance of ollama3.2
+>
+> Ollama installation/running
+>
+> ` curl -fsSL https://ollama.com/install.sh | sh `
+>
+> ` ollama serve `
+>
+> ` ollama pull llama3.2 `
+
 ## Question samples
+
+--------------------------------------------------------------------------------------------------------------------------
 
 > request
 `POST /apiv1/chat/ask`
 
-`curl -X POST -H 'Content-Type: application/json' -d '{"question":"tell me about django ORM"}' localhost:8000/apiv1/chat/ask/`
+`curl -X POST -H 'Content-Type: application/json' -d '{"question":"what is django forms?"}' localhost:8000/apiv1/chat/ask/`
 
 > response
-`Based on the provided data, I am unable to provide detailed information about Django ORM (Object-Relational Mapper). However, here is a brief overview of what the Django ORM does:
+```
+Django Forms is a built-in library in Django that provides a simple way to handle form data and validation. It allows you to define forms as classes or functions, which can be used to validate user input from forms.
 
-1. The Django ORM simplifies the handling of databases by providing an easy-to-use Pythonic API for querying and updating database tables. It allows developers to interact with databases using object-oriented methods instead of writing raw SQL queries.
+The main features of Django Forms include:
 
-2. Models in Django define the structure of database tables, including their fields and relationships with other models.
+* Automatic validation of form fields
+* Ability to tie forms to models, enabling seamless CRUD operations on database entries
 
-3. The ORM automatically maps these models to corresponding database tables when a model is saved, and vice versa when loading data from the database.
+This makes it easier for developers to create secure and robust forms in their Django applications.
 
-4. The ORM provides various query methods for filtering, sorting, and aggregating data in the database. Some examples include `filter()`, `exclude()`, `order_by()`, `count()`, etc.
+Forms are particularly useful when you want to enforce certain rules or constraints on user input, such as email addresses, phone numbers, or dates. By using Django Forms, you can ensure that your application is more secure and user-friendly.
+```
 
-5. It also supports more complex queries using QuerySets, which can be further filtered or annotated using various methods.
+--------------------------------------------------------------------------------------------------------------------------
 
-6. Django ORM supports relationships between models, such as OneToOneField, ForeignKey, ManyToManyField, and GenericForeignKey. These relationships make it easy to establish connections between different parts of your data model.
+> request
+`POST /apiv1/chat/ask`
 
-7. Transactions are automatically managed by the ORM, ensuring data consistency when saving multiple records at once.
+`curl -X POST -H 'Content-Type: application/json' -d '{"question":"what is django signals"}' localhost:8000/apiv1/chat/ask/`
 
-For more detailed information about Django ORM, you can refer to the official Django documentation: https://docs.djangoproject.com/en/4.1/topics/db/queries/`
+> response
+```
+Based on the data provided, it seems that Django Signals are a way for different parts of an application to communicate with each other.
+
+According to the table, "allow" indicates that signals can be sent and received by applications. 
+
+In more detail, when certain actions occur elsewhere in the system (e.g., when a user is created or updated), Django can send a signal to other parts of the application that are listening for these events. This allows different components to react to these changes without having to know about each other's internal workings.
+
+I don't have more information on this topic, but it appears to be related to decoupling and event-driven architecture in Django applications.  
+```
 
