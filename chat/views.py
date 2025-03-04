@@ -9,7 +9,4 @@ class RagAPIView(APIView):
         question_request = request.data["question"]
         response = StreamingHttpResponse(rag_ask(question_request), status=200, content_type="application/json")
         response['Cache-Control'] = 'no-cache'
-
-        print("Returning response.")
-
         return response
